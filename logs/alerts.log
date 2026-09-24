@@ -1,0 +1,100 @@
+Additional Information:
+	Privileges:		-"
+win.eventdata.memberSid: S-1-5-21-365683523-1018791215-68183753-1001
+win.eventdata.targetUserName: Users
+win.eventdata.targetDomainName: Builtin
+win.eventdata.targetSid: S-1-5-32-545
+win.eventdata.subjectUserSid: S-1-5-21-365683523-1018791215-68183753-1000
+win.eventdata.subjectUserName: sanji
+win.eventdata.subjectDomainName: WIN10-CLEAN
+win.eventdata.subjectLogonId: 0x2ca80
+
+** Alert 1790275793.2508808: mail  - windows,windows_security,group_changed,win_group_changed,pci_dss_8.1.2,pci_dss_10.2.5,gpg13_7.10,gdpr_IV_35.7.d,gdpr_IV_32.2,hipaa_164.312.a.2.I,hipaa_164.312.a.2.II,hipaa_164.312.b,nist_800_53_AC.2,nist_800_53_IA.4,nist_800_53_AU.14,nist_800_53_AC.7,tsc_CC6.8,tsc_CC7.2,tsc_CC7.3,
+2026 Sep 24 18:49:53 (win10-clean) any->EventChannel
+Rule: 60154 (level 12) -> 'Administrators Group Changed'
+{"win":{"system":{"providerName":"Microsoft-Windows-Security-Auditing","providerGuid":"{54849625-5478-4994-a5ba-3e3b0328c30d}","eventID":"4732","version":"0","level":"0","task":"13826","opcode":"0","keywords":"0x8020000000000000","systemTime":"2026-09-24T18:48:57.1460300Z","eventRecordID":"960","processID":"632","threadID":"2248","channel":"Security","computer":"win10-clean","severityValue":"AUDIT_SUCCESS","message":"\"A member was added to a security-enabled local group.\r\n\r\nSubject:\r\n\tSecurity ID:\t\tS-1-5-21-365683523-1018791215-68183753-1000\r\n\tAccount Name:\t\tsanji\r\n\tAccount Domain:\t\tWIN10-CLEAN\r\n\tLogon ID:\t\t0x2CA80\r\n\r\nMember:\r\n\tSecurity ID:\t\tS-1-5-21-365683523-1018791215-68183753-1001\r\n\tAccount Name:\t\t-\r\n\r\nGroup:\r\n\tSecurity ID:\t\tS-1-5-32-544\r\n\tGroup Name:\t\tAdministrators\r\n\tGroup Domain:\t\tBuiltin\r\n\r\nAdditional Information:\r\n\tPrivileges:\t\t-\""},"eventdata":{"memberSid":"S-1-5-21-365683523-1018791215-68183753-1001","targetUserName":"Administrators","targetDomainName":"Builtin","targetSid":"S-1-5-32-544","subjectUserSid":"S-1-5-21-365683523-1018791215-68183753-1000","subjectUserName":"sanji","subjectDomainName":"WIN10-CLEAN","subjectLogonId":"0x2ca80"}}}
+win.system.providerName: Microsoft-Windows-Security-Auditing
+win.system.providerGuid: {54849625-5478-4994-a5ba-3e3b0328c30d}
+win.system.eventID: 4732
+win.system.version: 0
+win.system.level: 0
+win.system.task: 13826
+win.system.opcode: 0
+win.system.keywords: 0x8020000000000000
+win.system.systemTime: 2026-09-24T18:48:57.1460300Z
+win.system.eventRecordID: 960
+win.system.processID: 632
+win.system.threadID: 2248
+win.system.channel: Security
+win.system.computer: win10-clean
+win.system.severityValue: AUDIT_SUCCESS
+win.system.message: "A member was added to a security-enabled local group.
+
+Subject:
+	Security ID:		S-1-5-21-365683523-1018791215-68183753-1000
+	Account Name:		sanji
+	Account Domain:		WIN10-CLEAN
+	Logon ID:		0x2CA80
+
+Member:
+	Security ID:		S-1-5-21-365683523-1018791215-68183753-1001
+	Account Name:		-
+
+Group:
+	Security ID:		S-1-5-32-544
+	Group Name:		Administrators
+	Group Domain:		Builtin
+
+Additional Information:
+	Privileges:		-"
+win.eventdata.memberSid: S-1-5-21-365683523-1018791215-68183753-1001
+win.eventdata.targetUserName: Administrators
+win.eventdata.targetDomainName: Builtin
+win.eventdata.targetSid: S-1-5-32-544
+win.eventdata.subjectUserSid: S-1-5-21-365683523-1018791215-68183753-1000
+win.eventdata.subjectUserName: sanji
+win.eventdata.subjectDomainName: WIN10-CLEAN
+win.eventdata.subjectLogonId: 0x2ca80
+
+** Alert 1790275830.2511823: - pam,syslog,authentication_success,pci_dss_10.2.5,gpg13_7.8,gpg13_7.9,gdpr_IV_32.2,hipaa_164.312.b,nist_800_53_AU.14,nist_800_53_AC.7,tsc_CC6.8,tsc_CC7.2,tsc_CC7.3,
+2026 Sep 24 18:50:30 sanji->journald
+Rule: 5501 (level 3) -> 'PAM: Login session opened.'
+User: sanji(uid=1000)
+Sep 24 18:50:30 sanji sshd[63622]: pam_unix(sshd:session): session opened for user sanji(uid=1000) by (uid=0)
+uid: 0
+
+** Alert 1790275830.2512248: - syslog,sshd,authentication_success,gdpr_IV_32.2,gpg13_7.1,gpg13_7.2,hipaa_164.312.b,nist_800_53_AU.14,nist_800_53_AC.7,pci_dss_10.2.5,tsc_CC6.8,tsc_CC7.2,tsc_CC7.3,
+2026 Sep 24 18:50:30 sanji->journald
+Rule: 5715 (level 3) -> 'sshd: authentication success.'
+Src IP: 192.168.1.37
+Src Port: 49220
+User: sanji
+Sep 24 18:50:30 sanji sshd[63622]: Accepted password for sanji from 192.168.1.37 port 49220 ssh2
+
+** Alert 1790275832.2512684: - pam,syslog,authentication_success,pci_dss_10.2.5,gpg13_7.8,gpg13_7.9,gdpr_IV_32.2,hipaa_164.312.b,nist_800_53_AU.14,nist_800_53_AC.7,tsc_CC6.8,tsc_CC7.2,tsc_CC7.3,
+2026 Sep 24 18:50:32 sanji->journald
+Rule: 5501 (level 3) -> 'PAM: Login session opened.'
+User: root(uid=0)
+Sep 24 18:50:30 sanji sudo[63684]: pam_unix(sudo:session): session opened for user root(uid=0) by (uid=1000)
+uid: 1000
+
+** Alert 1790275832.2513107: - syslog,sudo,pci_dss_10.2.5,pci_dss_10.2.2,gpg13_7.6,gpg13_7.8,gpg13_7.13,gdpr_IV_32.2,hipaa_164.312.b,nist_800_53_AU.14,nist_800_53_AC.7,nist_800_53_AC.6,tsc_CC6.8,tsc_CC7.2,tsc_CC7.3,
+2026 Sep 24 18:50:32 sanji->journald
+Rule: 5402 (level 3) -> 'Successful sudo to ROOT executed.'
+User: root
+Sep 24 18:50:30 sanji sudo[63684]:    sanji : PWD=/home/sanji ; USER=root ; COMMAND=/usr/bin/tail -n 40 /var/ossec/logs/alerts/alerts.log
+pwd: /home/sanji
+command: /usr/bin/tail -n 40 /var/ossec/logs/alerts/alerts.log
+
+** Alert 1790275832.2513650: - pam,syslog,pci_dss_10.2.5,gpg13_7.8,gpg13_7.9,gdpr_IV_32.2,hipaa_164.312.b,nist_800_53_AU.14,nist_800_53_AC.7,tsc_CC6.8,tsc_CC7.2,tsc_CC7.3,
+2026 Sep 24 18:50:32 sanji->journald
+Rule: 5502 (level 3) -> 'PAM: Login session closed.'
+User: sanji
+Sep 24 18:50:30 sanji sshd[63622]: pam_unix(sshd:session): session closed for user sanji
+
+** Alert 1790275832.2514014: - pam,syslog,pci_dss_10.2.5,gpg13_7.8,gpg13_7.9,gdpr_IV_32.2,hipaa_164.312.b,nist_800_53_AU.14,nist_800_53_AC.7,tsc_CC6.8,tsc_CC7.2,tsc_CC7.3,
+2026 Sep 24 18:50:32 sanji->journald
+Rule: 5502 (level 3) -> 'PAM: Login session closed.'
+User: root
+Sep 24 18:50:30 sanji sudo[63684]: pam_unix(sudo:session): session closed for user root
+
