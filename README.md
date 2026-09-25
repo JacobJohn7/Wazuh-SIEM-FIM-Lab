@@ -1,5 +1,11 @@
 # Wazuh SIEM & File Integrity Monitoring (FIM) Deployment
 
+![Wazuh 4.12](https://img.shields.io/badge/Wazuh-4.12.0-000000?style=for-the-badge&logo=wazuh&logoColor=white)
+![Ubuntu 22.04](https://img.shields.io/badge/Ubuntu-22.04_LTS-E95420?style=for-the-badge&logo=ubuntu&logoColor=white)
+![Windows 10](https://img.shields.io/badge/Windows-10_Pro-0078D6?style=for-the-badge&logo=windows&logoColor=white)
+![FIM](https://img.shields.io/badge/Syscheck-Real--Time_FIM-brightgreen?style=for-the-badge)
+![MITRE ATT&CK](https://img.shields.io/badge/MITRE-T1098%20%7C%20T1492-red?style=for-the-badge)
+
 Enterprise SIEM deployment and real-time File Integrity Monitoring (FIM) lab built on a dedicated Ubuntu 22.04 manager node and a Windows 10 target endpoint. This repository documents the installation, agent enrollment, centralized syscheck configuration, and live detection of privilege escalation and unauthorized file modifications.
 
 ---
