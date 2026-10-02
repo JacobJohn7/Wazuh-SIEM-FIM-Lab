@@ -91,7 +91,9 @@ Wazuh agent_control. List of available agents:
 ```
 .
 ├── config/
-│   └── agent.conf                  # Shared agent XML policy (FIM directory stanzas)
+│   ├── agent.conf                  # Shared agent XML policy (FIM directory stanzas)
+│   ├── custom_windows_rules.xml    # Custom XML rules for Defender tampering & PS cradles
+│   └── custom_decoders.xml         # Custom XML decoders for script block telemetry
 ├── logs/
 │   ├── alerts.log                  # Raw Wazuh alerts log output
 │   └── alerts_sample.json          # Structured JSON event stream

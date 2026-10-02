@@ -1,0 +1,6 @@
+<decoder name="powershell_scriptblock">
+  <parent>windows_eventchannel</parent>
+  <prematch>Microsoft-Windows-PowerShell/Operational</prematch>
+  <regex offset="after_parent">ScriptBlockText="(\.+)"</regex>
+  <order>scriptblock_payload</order>
+</decoder>
