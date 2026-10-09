@@ -4,9 +4,9 @@
 ![Ubuntu 22.04](https://img.shields.io/badge/Ubuntu-22.04_LTS-E95420?style=for-the-badge&logo=ubuntu&logoColor=white)
 ![Windows 10](https://img.shields.io/badge/Windows-10_Pro-0078D6?style=for-the-badge&logo=windows&logoColor=white)
 ![FIM](https://img.shields.io/badge/Syscheck-Real--Time_FIM-brightgreen?style=for-the-badge)
-![MITRE ATT&CK](https://img.shields.io/badge/MITRE-T1098%20%7C%20T1492-red?style=for-the-badge)
+![MITRE ATT&CK](https://img.shields.io/badge/MITRE-T1098%20%7C%20T1003-red?style=for-the-badge)
 
-Enterprise SIEM deployment and real-time File Integrity Monitoring (FIM) lab built on a dedicated Ubuntu 22.04 manager node and a Windows 10 target endpoint. This repository documents the installation, agent enrollment, centralized syscheck configuration, and live detection of privilege escalation and unauthorized file modifications.
+Enterprise SIEM deployment and real-time File Integrity Monitoring (FIM) lab built on a dedicated Ubuntu 22.04 manager node and a Windows 10 target endpoint. This repository documents the installation, agent enrollment, centralized syscheck configuration, and live detection of privilege escalation, credential dumping, log evasion, and unauthorized file modifications.
 
 ---
 
@@ -80,9 +80,13 @@ Wazuh agent_control. List of available agents:
 | Technique | ID | Detection Rule | Log Source | Level |
 | :--- | :--- | :--- | :--- | :--- |
 | **Account Manipulation** | T1098 | Rule 60154 (`Administrators Group Changed`) | Windows Security (Event 4732) | 12 |
+| **OS Credential Dumping** | T1003.001 | Rule 100305 (`LSASS memory dump via procdump/comsvcs`) | Security (Event 4688) / Sysmon (Event 1) | 13 |
+| **Clear Windows Event Logs** | T1070.001 | Rule 100306 (`Security / System Event Log Cleared`) | Security (Event 1102) / System (Event 104) | 11 |
+| **Impair Defenses (AV Exclusion)** | T1562.001 | Rule 100301 (`Defender AV exclusion list modified`) | Windows Defender (Event 5007) | 10 |
+| **PowerShell Execution / Cradle** | T1059.001 | Rule 100302 (`Suspicious PowerShell ScriptBlock`) | PowerShell Operational (Event 4104) | 12 |
+| **Scheduled Task Persistence** | T1053.005 | Rule 100303 (`Scheduled Task Created`) | Windows Security (Event 4698) | 8 |
+| **Privilege Escalation (Privileges)** | T1078 | Rule 100304 (`Special Privileges Assigned`) | Windows Security (Event 4672) | 9 |
 | **File Creation / Modification** | T1492 | Syscheck FIM (`C:\Users\...\FIM_Test`) | Wazuh Syscheck | 7 |
-| **PowerShell Execution** | T1059.001 | ScriptBlock Logging (Event ID 4104) | Windows PowerShell | 6 |
-| **Valid Accounts** | T1078 | Rule 5502 (`PAM Login Session Closed`) | Linux Syslog | 3 |
 
 ---
 
@@ -92,7 +96,7 @@ Wazuh agent_control. List of available agents:
 .
 ├── config/
 │   ├── agent.conf                  # Shared agent XML policy (FIM directory stanzas)
-│   ├── custom_windows_rules.xml    # Custom XML rules for Defender tampering & PS cradles
+│   ├── custom_windows_rules.xml    # Custom XML rules for LSASS dumping, anti-forensics, Defender tampering & PS cradles
 │   └── custom_decoders.xml         # Custom XML decoders for script block telemetry
 ├── logs/
 │   ├── alerts.log                  # Raw Wazuh alerts log output

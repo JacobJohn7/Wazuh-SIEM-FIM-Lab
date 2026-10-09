@@ -1,4 +1,4 @@
-<group name="windows,windows_security,privilege_escalation,persistence,">
+<group name="windows,windows_security,privilege_escalation,persistence,defense_evasion,credential_access,">
 
   <!-- Windows Defender Exclusion Added -->
   <rule id="100301" level="10">
@@ -52,6 +52,29 @@
       <id>T1134</id>
     </mitre>
     <group>privilege_escalation,</group>
+  </rule>
+
+  <!-- LSASS Memory Access via Process Creation (ProcDump, Taskmgr, comsvcs.dll) -->
+  <rule id="100305" level="13">
+    <if_group>windows</if_group>
+    <field name="win.system.channel">^Security$|^Microsoft-Windows-Sysmon/Operational$</field>
+    <pcre2>(?i)(procdump(\.exe)?.*lsass|rundll32(\.exe)?.*comsvcs(\.dll)?.*(#24|MiniDump)|taskmgr(\.exe)?.*lsass|Out-Minidump)</pcre2>
+    <description>Potential LSASS process memory dump attempt (OS Credential Dumping)</description>
+    <mitre>
+      <id>T1003.001</id>
+    </mitre>
+    <group>credential_access,lsass_dump,</group>
+  </rule>
+
+  <!-- Windows Event Log Cleared (Security, System, PowerShell) -->
+  <rule id="100306" level="11">
+    <if_group>windows</if_group>
+    <field name="win.system.eventID">^1102$|^104$</field>
+    <description>Windows audit event log was cleared (Defense Evasion / Anti-Forensics)</description>
+    <mitre>
+      <id>T1070.001</id>
+    </mitre>
+    <group>defense_evasion,log_cleared,</group>
   </rule>
 
 </group>
