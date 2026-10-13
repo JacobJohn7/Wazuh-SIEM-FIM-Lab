@@ -80,6 +80,10 @@ Wazuh agent_control. List of available agents:
 | Technique | ID | Detection Rule | Log Source | Level |
 | :--- | :--- | :--- | :--- | :--- |
 | **Account Manipulation** | T1098 | Rule 60154 (`Administrators Group Changed`) | Windows Security (Event 4732) | 12 |
+| **OS Credential Dumping (DCSync)** | T1003.006 | Rule 100401 (`Active Directory DCSync Replication Rights`) | Windows Security (Event 4662) | 14 |
+| **Kerberoasting** | T1558.003 | Rule 100402 (`Kerberos Service Ticket with RC4 Encryption`) | Windows Security (Event 4769) | 10 |
+| **Domain Admins Group Addition** | T1098 | Rule 100403 (`User Added to Domain Admins Group`) | Windows Security (Event 4728) | 12 |
+| **Golden / Silver Ticket** | T1558.001 | Rule 100404 (`Anomalous Kerberos Ticket Logon Session`) | Windows Security (Event 4624) | 12 |
 | **OS Credential Dumping** | T1003.001 | Rule 100305 (`LSASS memory dump via procdump/comsvcs`) | Security (Event 4688) / Sysmon (Event 1) | 13 |
 | **Clear Windows Event Logs** | T1070.001 | Rule 100306 (`Security / System Event Log Cleared`) | Security (Event 1102) / System (Event 104) | 11 |
 | **Impair Defenses (AV Exclusion)** | T1562.001 | Rule 100301 (`Defender AV exclusion list modified`) | Windows Defender (Event 5007) | 10 |
@@ -97,6 +101,7 @@ Wazuh agent_control. List of available agents:
 ├── config/
 │   ├── agent.conf                  # Shared agent XML policy (FIM directory stanzas)
 │   ├── custom_windows_rules.xml    # Custom XML rules for LSASS dumping, anti-forensics, Defender tampering & PS cradles
+│   ├── custom_ad_attacks_rules.xml # Custom XML detection rules for Active Directory DCSync, Kerberoasting & Ticket forgery
 │   └── custom_decoders.xml         # Custom XML decoders for script block telemetry
 ├── logs/
 │   ├── alerts.log                  # Raw Wazuh alerts log output
