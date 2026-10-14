@@ -1,20 +1,16 @@
 # Wazuh SIEM & File Integrity Monitoring (FIM) Deployment
 
-![Wazuh 4.12](https://img.shields.io/badge/Wazuh-4.12.0-000000?style=for-the-badge&logo=wazuh&logoColor=white)
-![Ubuntu 22.04](https://img.shields.io/badge/Ubuntu-22.04_LTS-E95420?style=for-the-badge&logo=ubuntu&logoColor=white)
-![Windows 10](https://img.shields.io/badge/Windows-10_Pro-0078D6?style=for-the-badge&logo=windows&logoColor=white)
-![FIM](https://img.shields.io/badge/Syscheck-Real--Time_FIM-brightgreen?style=for-the-badge)
-![MITRE ATT&CK](https://img.shields.io/badge/MITRE-T1098%20%7C%20T1003-red?style=for-the-badge)
+Enterprise SIEM deployment and real-time File Integrity Monitoring (FIM) lab built on a dedicated Ubuntu 22.04 manager node and a Windows 10 target endpoint.
 
-Enterprise SIEM deployment and real-time File Integrity Monitoring (FIM) lab built on a dedicated Ubuntu 22.04 manager node and a Windows 10 target endpoint. This repository documents the installation, agent enrollment, centralized syscheck configuration, and live detection of privilege escalation, credential dumping, log evasion, and unauthorized file modifications.
+This repository documents the installation, agent enrollment, centralized syscheck configuration, and live detection of privilege escalation, credential dumping, log evasion, and unauthorized file modifications.
 
 ---
 
 ## Architecture & Network Topology
 
-The lab operates on a bridged host network interface (`enp4s0`), isolating the SIEM infrastructure while allowing direct agent-manager telemetry transmission.
+The lab operates on a bridged host network interface (`enp4s0`), isolating the SIEM infrastructure while allowing direct agent-manager telemetry transmission:
 
-```
+```text
 +------------------------------------+       +------------------------------------+
 |        Wazuh SIEM Manager          |       |      Windows Target Endpoint       |
 |            (Wazuh-Lab)             |       |            (Win10-Clean)           |
@@ -33,7 +29,7 @@ The lab operates on a bridged host network interface (`enp4s0`), isolating the S
 
 ## Centralized FIM Configuration (`agent.conf`)
 
-Real-time File Integrity Monitoring was configured centrally on the Manager node within `/var/ossec/etc/shared/default/agent.conf` to enforce uniform monitoring policies across all connected Windows agents without requiring individual endpoint edits.
+Real-time File Integrity Monitoring was configured centrally on the Manager node within `/var/ossec/etc/shared/default/agent.conf` to enforce uniform monitoring policies across all connected Windows agents without requiring individual endpoint edits:
 
 ```xml
 <agent_config os="Windows">
@@ -64,7 +60,7 @@ Rule: 60154 (level 12) -> 'Administrators Group Changed'
 
 ### 2. Agent Telemetry & Lifecycle Events
 
-Agent connection state transitions and active responses were verified through managerial CLI tools (`agent_control`) and raw log inspection.
+Agent connection state transitions and active responses were verified through managerial CLI tools (`agent_control`) and raw log inspection:
 
 ```text
 Wazuh agent_control. List of available agents:
@@ -96,7 +92,7 @@ Wazuh agent_control. List of available agents:
 
 ## Repository Structure
 
-```
+```text
 .
 ├── config/
 │   ├── agent.conf                  # Shared agent XML policy (FIM directory stanzas)
